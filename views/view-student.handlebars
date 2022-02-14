@@ -1,0 +1,39 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/abiabstimmung/studentmanagement/">Schüler verwalten</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Schüler anschauen</li>
+  </ol>
+</nav>
+
+<div class="p-5">
+  {{#each rows}}
+  <div class="row mb-5">
+    <div class="col text-center">
+      <h3>{{this.first_name}} {{this.last_name}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Vorname</th>
+              <th scope="col">Abgestimmt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <th scope="row">{{this.ID}}</th>
+              <td>{{this.Name}}</td>
+              <td>{{this.Forename}}</td>
+              <td>{{this.voted}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/each}}
+</div>

@@ -1,0 +1,23 @@
+<h1>Abstimmung</h1>
+<br>
+<table class="table" style="margin-top: 5px;">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Abgestimmt</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each student}}
+    <tr>
+      <td scope="row">{{this.ID}}</td>
+      <td>{{this.Name}}</td>
+      <td>{{this.Forename}}</td>
+      <td>{{this.voted}}</td>
+    </tr>
+    {{/each}}
+
+  </tbody>
+</table>
