@@ -14,5 +14,9 @@ router.get('/abiabstimmung/studentmanagement/editstudent/:id', controller.editst
 router.post('/abiabstimmung/studentmanagement/editstudent/:id', controller.updatestudent);
 router.get('/abiabstimmung/studentmanagement/viewstudent/:id', controller.viewallstudents);
 router.get('/abiabstimmung/studentmanagement/:id',controller.deletestudent);
+
+router.get('/abiabstimmung/vsmanagement/', controller.viewvs);
+router.get('/abiabstimmung/vsmanagement/addvs', controller.formvs);
+router.post('/abiabstimmung/vsmanagement/addvs', controller.createvs);
   
 module.exports = router;
