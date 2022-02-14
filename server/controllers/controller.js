@@ -143,3 +143,34 @@ exports.viewallstudents = (req, res) => {
     }
   });
 }
+
+//---------------------------------------------Versus-------------------------------------------------------------
+
+
+exports.viewvs = (req, res) => {
+  connection.query('SELECT * FROM vs', (err, rows) => {
+    if (!err) {
+      let removedStudent = req.query.removed;
+      res.render('vsmanagement', { rows, removedStudent });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.formvs = (req, res) => {
+  res.render('add-vs');
+}
+
+
+exports.createvs = (req, res) => {
+  const { name, option1, option2 } = req.body;
+  connection.query('INSERT INTO vs SET Name = ?, Option1 = ?, Option2 = ?', [name, option1, option2], (err, rows) => {
+    if (!err) {
+      res.render('add-student', { alert: 'Versus Frage erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
