@@ -592,3 +592,29 @@ exports.viewallteachercategory = (req, res) => {
     }
   });
 }
+
+/**
+ * 
+ * SQL statements :
+ *      get Name and number of votes: SELECT count(*) anzahl, Name, Forename FROM `student-category` INNER JOIN student ON `student-category`.`studentID` = `student`.`ID` WHERE optionID = 4 GROUP BY student.ID ORDER BY count(*) desc;
+ *      get versus results with number: SELECT count(*) anzahl, `student-vs`.`option` FROM `student-vs` GROUP BY `student-vs`.`option` ORDER BY count(*) DESC;
+ *      get standard results: SELECT name, AVG(value) result FROM `student-default` JOIN `default-student` ON `student-default`.`optionID` = `default-student`.`ID` GROUP BY optionID;
+ *      get teacher results with numbers:
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.evaluation = (req, res) => {
+  var result = []
+  var category_list = []
+  connection.query('SELECT * FROM category', (err, category) => {
+    if (!err) {
+      for(var i = 0; i < category.length; i++){
+        connection.query('SELECT count(*) anzahl, Name, Forename FROM `student-category` INNER JOIN student ON `student-category`.`studentID` = `student`.`ID` WHERE optionID = ? GROUP BY student.ID ORDER BY count(*) desc;',
+         [category[i].ID], (err, categoryresults) => {
+          if (err) {console.log(err);}});
+      }
+    } else {console.log(err);}});
+  result.push(category_list)
+  console.log(result)
+}
