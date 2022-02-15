@@ -4,8 +4,6 @@ const controller = require('../controllers/controller');
 
 router.get('/abiabstimmung/', controller.home);
 
-router.get('/abiabstimmung/studentrview/:uuid', controller.studentview);
-
 router.get('/abiabstimmung/studentmanagement/', controller.viewstudent);
 router.post('/abiabstimmung/studentmanagement/', controller.finduser);
 router.get('/abiabstimmung/studentmanagement/addstudent', controller.formstudent);
