@@ -99,26 +99,6 @@ exports.createstudent = (req, res) => {
     });
 }
 
-exports.studentview = (req, res) => {
-    connection.query('SELECT * FROM assignments', (err, rows) => {
-        if (!err) {
-            const student_uuid = req.params.uuid
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].uuid == student_uuid) {
-                    if (i + 1 < rows.length) {
-                        var student = rows[i + 1]
-                    } else {
-                        var student = rows[0]
-                    }
-                    res.render('studentview', {student});
-                }
-            }
-        } else {
-            console.log(err)
-        }
-    })
-}
-
 
 exports.editstudent = (req, res) => {
     connection.query('SELECT * FROM student WHERE id = ?', [req.params.id], (err, rows) => {
