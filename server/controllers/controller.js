@@ -1,12 +1,4 @@
 const mysql = require('mysql');
-const async = require('async');
-const fs = require('fs-extra');
-const hbs = require('handlebars');
-const path = require('path');
-const moment = require('moment');
-const {compileFunction} = require('vm');
-const asyncHandler = require('express-async-handler')
-const open = require('open');
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -672,3 +664,4 @@ exports.evaluation = (req, res) => {
         }
     });
 }
+
