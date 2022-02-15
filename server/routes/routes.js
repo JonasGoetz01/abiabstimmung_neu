@@ -30,5 +30,21 @@ router.get('/abiabstimmung/categorymanagement/editcategory/:id', controller.edit
 router.post('/abiabstimmung/categorymanagement/editcategory/:id', controller.updatecategory);
 router.get('/abiabstimmung/categorymanagement/viewcategory/:id', controller.viewallcategory);
 router.get('/abiabstimmung/categorymanagement/:id',controller.deletecategory);
+
+router.get('/abiabstimmung/standardmanagement/', controller.viewstandard);
+router.get('/abiabstimmung/standardmanagement/addstandard', controller.formstandard);
+router.post('/abiabstimmung/standardmanagement/addstandard', controller.createstandard);
+router.get('/abiabstimmung/standardmanagement/editstandard/:id', controller.editstandard);
+router.post('/abiabstimmung/standardmanagement/editstandard/:id', controller.updatestandard);
+router.get('/abiabstimmung/standardmanagement/viewstandard/:id', controller.viewallstandard);
+router.get('/abiabstimmung/standardmanagement/:id',controller.deletestandard);
+
+router.get('/abiabstimmung/teachercategorymanagement/', controller.viewteachercategory);
+router.get('/abiabstimmung/teachercategorymanagement/addteachercategory', controller.formteachercategory);
+router.post('/abiabstimmung/teachercategorymanagement/addteachercategory', controller.createteachercategory);
+router.get('/abiabstimmung/teachercategorymanagement/editteachercategory/:id', controller.editteachercategory);
+router.post('/abiabstimmung/teachercategorymanagement/editteachercategory/:id', controller.updateteachercategory);
+router.get('/abiabstimmung/teachercategorymanagement/viewteachercategory/:id', controller.viewallteachercategory);
+router.get('/abiabstimmung/teachercategorymanagement/:id',controller.deleteteachercategory);
   
 module.exports = router;
