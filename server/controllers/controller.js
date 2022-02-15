@@ -18,9 +18,39 @@ let connection = mysql.createConnection({
 
 
 exports.home = (req, res) => {
-  connection.query('SELECT * FROM student', (err, student) => {
+  connection.query('SELECT * FROM category', (err, category) => {
     if (!err) {
-      res.render('home', { student })
+      connection.query('SELECT * FROM `default-student`', (err, standard) => {
+        if (!err) {
+          connection.query('SELECT * FROM vs', (err, vs) => {
+            if (!err) {
+              connection.query('SELECT * FROM `category-teacher`', (err, teachercategory) => {
+                if (!err) {
+                  connection.query('SELECT * FROM student', (err, students) => {
+                    if (!err) {
+                      connection.query('SELECT * FROM teacher', (err, teacher) => {
+                        if (!err) {
+                          res.render('home', { category, standard, vs, teachercategory, students, teacher })
+                        }else{
+                          console.log(err);
+                        }
+                      });
+                    }else{
+                      console.log(err);
+                    }
+                  });
+                }else{
+                  console.log(err);
+                }
+              });
+            }else{
+              console.log(err);
+            }
+          });
+        }else{
+          console.log(err);
+        }
+      });
     }else{
       console.log(err);
     }
