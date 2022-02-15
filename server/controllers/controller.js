@@ -309,3 +309,171 @@ exports.viewallcategory = (req, res) => {
     }
   });
 }
+
+
+//---------------------------------------------Standard-------------------------------------------------------------
+
+
+exports.viewstandard = (req, res) => {
+  connection.query('SELECT * FROM `default-student`', (err, rows) => {
+    if (!err) {
+      let removedStudent = req.query.removed;
+      res.render('standardmanagement', { rows, removedStudent });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.formstandard = (req, res) => {
+  res.render('add-standard');
+}
+
+
+exports.createstandard = (req, res) => {
+  const { name } = req.body;
+  connection.query('INSERT INTO `default-student` SET name = ?', [name], (err, rows) => {
+    if (!err) {
+      res.render('add-standard', { alert: 'Standard Kategorie erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+exports.editstandard = (req, res) => {
+  connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('edit-standard', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.updatestandard = (req, res) => {
+  const { name } = req.body;
+  const voted = req.body.voted ? 1 : 0;
+  connection.query('UPDATE `default-student` SET name = ? WHERE ID = ?', [name, req.params.id], (err, rows) => {
+    if (!err) {
+      connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('edit-standard', { rows, alert: `Standard Kategorie wurde aktualisiert.` });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.deletestandard = (req, res) => {
+  connection.query('DELETE from `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      let removedstudent = encodeURIComponent('Standard Kategorie erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/standardmanagement');
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.viewallstandard = (req, res) => {
+  connection.query('SELECT * FROM `default-student` WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-standard', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+//---------------------------------------------Teachercategory-------------------------------------------------------------
+
+
+exports.viewteachercategory = (req, res) => {
+  connection.query('SELECT * FROM `default-student`', (err, rows) => {
+    if (!err) {
+      let removedStudent = req.query.removed;
+      res.render('standardmanagement', { rows, removedStudent });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.formteachercategory = (req, res) => {
+  res.render('add-standard');
+}
+
+
+exports.createteachercategory = (req, res) => {
+  const { name } = req.body;
+  connection.query('INSERT INTO `default-student` SET name = ?', [name], (err, rows) => {
+    if (!err) {
+      res.render('add-standard', { alert: 'Standard Kategorie erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+exports.editteachercategory = (req, res) => {
+  connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('edit-standard', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.updateteachercategory = (req, res) => {
+  const { name } = req.body;
+  const voted = req.body.voted ? 1 : 0;
+  connection.query('UPDATE `default-student` SET name = ? WHERE ID = ?', [name, req.params.id], (err, rows) => {
+    if (!err) {
+      connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('edit-standard', { rows, alert: `Standard Kategorie wurde aktualisiert.` });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.deleteteachercategory = (req, res) => {
+  connection.query('DELETE from `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      let removedstudent = encodeURIComponent('Standard Kategorie erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/standardmanagement');
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.viewallteachercategory = (req, res) => {
+  connection.query('SELECT * FROM `default-student` WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-standard', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
