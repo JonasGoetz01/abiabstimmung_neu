@@ -611,40 +611,62 @@ exports.viewallteachercategory = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-function getCategoryResults(id, name) {
-    connection.query('SELECT count(*) anzahl, Name, Forename FROM `student-category` INNER JOIN student ON `student-category`.`studentID` = `student`.`ID` WHERE optionID = ? GROUP BY student.ID ORDER BY count(*) desc;', id, (err, rows) => {
+function getCategoryResults(id, name, callback) {
+    connection.query('SELECT count(*) anzahl, Name, Forename FROM `student-category` INNER JOIN student ON `student-category`.`studentID` = `student`.`ID` WHERE optionID = ? GROUP BY student.ID ORDER BY count(*) desc;', id, (err, category_results) => {
         if (!err) {
-            for (let i = 0; i < rows.length; i++) {
-                rows[i].id = id
-                rows[i].name = name
-            }
-            //console.log(rows)
-            return rows;
+            return callback(category_results)
         } else {
             console.log(err);
         }
-    });
+    })
 }
 
-exports.evaluation = (req, res) => {
-    var results = {
-        category: [],
-        vs: [],
-        standtard: [],
-        teachercategory: []
-    }
-    connection.query('SELECT * FROM `category`', (err, rows) => {
+function getTeacherCategoryResults(id, name, callback) {
+    connection.query('SELECT count(*) anzahl, Name, Forename FROM `teacher-category` INNER JOIN teacher ON `teacher-category`.`teacherID` = `teacher`.`ID` WHERE optionID = ? GROUP BY teacher.ID ORDER BY count(*) desc;', id, (err, teachercategory_results) => {
         if (!err) {
-            for (let i = 0; i < rows.length; i++) {
-                let category_res = {
-                    id: rows[i].ID,
-                    optionName: rows[i].name
-                }
-                console.log("Watching on " + rows[i].ID)
-                console.log(getCategoryResults(rows[i].ID, rows[i].name))
-                results.category.push(category_res)
-            }
+            return callback(teachercategory_results)
+        } else {
+            console.log(err);
+        }
+    })
+}
 
+
+exports.evaluation = (req, res) => {
+    connection.query('SELECT * FROM `category`', (err, categories) => {
+        if (!err) {
+            for (let i = 0; i < categories.length; i++) {
+                getCategoryResults(categories[i].ID, categories[i].name, function (category_results) {
+                    //console.log(category_results)
+                    connection.query('SELECT * FROM `teacher-category`', (err, teacher_categories) => {
+                        if (!err) {
+                            for (let i = 0; i < teacher_categories.length; i++) {
+                                getTeacherCategoryResults(teacher_categories[i].ID, teacher_categories[i].name, function (teacher_categories_results) {
+                                    //console.log(teacher_categories_results)
+                                    connection.query('SELECT count(*) anzahl, `student-vs`.`option` FROM `student-vs` GROUP BY `student-vs`.`option` ORDER BY count(*) DESC;', (err, vs_results) => {
+                                        if (!err) {
+                                            connection.query('SELECT name, AVG(value) result FROM `student-default` JOIN `default-student` ON `student-default`.`optionID` = `default-student`.`ID` GROUP BY optionID;', (err, standard_results) => {
+                                                if (!err) {
+                                                    console.log(standard_results)
+                                                    console.log(vs_results)
+                                                    console.log(teacher_categories_results)
+                                                    console.log(category_results)
+                                                } else {
+                                                    console.log(err);
+                                                }
+                                            });
+                                        } else {
+                                            console.log(err);
+                                        }
+                                    });
+                                })
+                            }
+                        } else {
+                            console.log(err);
+                        }
+                    });
+                })
+            }
         } else {
             console.log(err);
         }
