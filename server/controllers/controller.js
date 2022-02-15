@@ -399,10 +399,10 @@ exports.viewallstandard = (req, res) => {
 
 
 exports.viewteachercategory = (req, res) => {
-  connection.query('SELECT * FROM `default-student`', (err, rows) => {
+  connection.query('SELECT * FROM `category-teacher`', (err, rows) => {
     if (!err) {
       let removedStudent = req.query.removed;
-      res.render('standardmanagement', { rows, removedStudent });
+      res.render('teachercategorymanagement', { rows, removedStudent });
     } else {
       console.log(err);
     }
@@ -411,15 +411,15 @@ exports.viewteachercategory = (req, res) => {
 
 
 exports.formteachercategory = (req, res) => {
-  res.render('add-standard');
+  res.render('add-teachercategory');
 }
 
 
 exports.createteachercategory = (req, res) => {
   const { name } = req.body;
-  connection.query('INSERT INTO `default-student` SET name = ?', [name], (err, rows) => {
+  connection.query('INSERT INTO `category-teacher` SET name = ?', [name], (err, rows) => {
     if (!err) {
-      res.render('add-standard', { alert: 'Standard Kategorie erfolgreich angelegt.' });
+      res.render('add-teachercategory', { alert: 'Lehrer Kategorie erfolgreich angelegt.' });
     } else {
       console.log(err);
     }
@@ -427,9 +427,9 @@ exports.createteachercategory = (req, res) => {
 }
 
 exports.editteachercategory = (req, res) => {
-  connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+  connection.query('SELECT * FROM `category-teacher` WHERE ID = ?', [req.params.id], (err, rows) => {
     if (!err) {
-      res.render('edit-standard', { rows });
+      res.render('edit-teachercategory', { rows });
     } else {
       console.log(err);
     }
@@ -440,11 +440,11 @@ exports.editteachercategory = (req, res) => {
 exports.updateteachercategory = (req, res) => {
   const { name } = req.body;
   const voted = req.body.voted ? 1 : 0;
-  connection.query('UPDATE `default-student` SET name = ? WHERE ID = ?', [name, req.params.id], (err, rows) => {
+  connection.query('UPDATE `category-teacher` SET name = ? WHERE ID = ?', [name, req.params.id], (err, rows) => {
     if (!err) {
-      connection.query('SELECT * FROM `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+      connection.query('SELECT * FROM `category-teacher` WHERE ID = ?', [req.params.id], (err, rows) => {
         if (!err) {
-          res.render('edit-standard', { rows, alert: `Standard Kategorie wurde aktualisiert.` });
+          res.render('edit-teachercategory', { rows, alert: `Lehrer Kategorie wurde aktualisiert.` });
         } else {
           console.log(err);
         }
@@ -457,10 +457,10 @@ exports.updateteachercategory = (req, res) => {
 
 
 exports.deleteteachercategory = (req, res) => {
-  connection.query('DELETE from `default-student` WHERE ID = ?', [req.params.id], (err, rows) => {
+  connection.query('DELETE from `category-teacher` WHERE ID = ?', [req.params.id], (err, rows) => {
     if (!err) {
-      let removedstudent = encodeURIComponent('Standard Kategorie erfolgreich gelöscht.');
-      res.redirect('/abiabstimmung/standardmanagement');
+      let removedstudent = encodeURIComponent('Lehrer Kategorie erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/teachercategorymanagement');
     } else {
       console.log(err);
     }
@@ -469,9 +469,9 @@ exports.deleteteachercategory = (req, res) => {
 
 
 exports.viewallteachercategory = (req, res) => {
-  connection.query('SELECT * FROM `default-student` WHERE id = ?', [req.params.id], (err, rows) => {
+  connection.query('SELECT * FROM `category-teacher` WHERE id = ?', [req.params.id], (err, rows) => {
     if (!err) {
-      res.render('view-standard', { rows });
+      res.render('view-teachercategory', { rows });
     } else {
       console.log(err);
     }
