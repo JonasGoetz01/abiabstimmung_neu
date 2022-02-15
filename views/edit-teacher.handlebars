@@ -1,8 +1,8 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
-    <li class="breadcrumb-item"><a href="/abiabstimmung/studentmanagement/">Schüler verwalten</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Schüler bearbeiten</li>
+    <li class="breadcrumb-item"><a href="/abiabstimmung/teachermanagement/">Lehrer verwalten</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Lehrer bearbeiten</li>
   </ol>
 </nav>
 
@@ -14,7 +14,7 @@
 {{/if}}
 
 {{#each rows}}
-<form class="row g-3 needs-validation" method="POST" action="/abiabstimmung/studentmanagement/editstudent/{{this.ID}}" novalidate>
-  {{> user-form}}
+<form class="row g-3 needs-validation" method="POST" action="/abiabstimmung/teachermanagement/editteacher/{{this.ID}}" novalidate>
+  {{> teacher-form}}
 </form>
 {{/each}}
