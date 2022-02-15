@@ -25,7 +25,6 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
       <th scope="col">Option1</th>
       <th scope="col">Option2</th>
       <th scope="col" class="text-end">Action</th>
@@ -36,9 +35,8 @@
     {{#each rows}}
     <tr>
       <th scope="row">{{this.ID}}</th>
-      <td>{{this.Name}}</td>
-      <td>{{this.Option1}}</td>
-      <td>{{this.Option2}}</td>
+      <td>{{this.option1}}</td>
+      <td>{{this.option2}}</td>
       <td class="text-end">
         <a href="/abiabstimmung/vsmanagement/viewvs/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> Anschauen</a>
         <a href="/abiabstimmung/vsmanagement/editvs/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Bearbeiten</a>

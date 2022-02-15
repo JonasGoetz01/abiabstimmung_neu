@@ -18,5 +18,17 @@ router.get('/abiabstimmung/studentmanagement/:id',controller.deletestudent);
 router.get('/abiabstimmung/vsmanagement/', controller.viewvs);
 router.get('/abiabstimmung/vsmanagement/addvs', controller.formvs);
 router.post('/abiabstimmung/vsmanagement/addvs', controller.createvs);
+router.get('/abiabstimmung/vsmanagement/editvs/:id', controller.editvs);
+router.post('/abiabstimmung/vsmanagement/editvs/:id', controller.updatevs);
+router.get('/abiabstimmung/vsmanagement/viewvs/:id', controller.viewallvs);
+router.get('/abiabstimmung/vsmanagement/:id',controller.deletevs);
+
+router.get('/abiabstimmung/categorymanagement/', controller.viewcategory);
+router.get('/abiabstimmung/categorymanagement/addcategory', controller.formcategory);
+router.post('/abiabstimmung/categorymanagement/addcategory', controller.createcategory);
+router.get('/abiabstimmung/categorymanagement/editcategory/:id', controller.editcategory);
+router.post('/abiabstimmung/categorymanagement/editcategory/:id', controller.updatecategory);
+router.get('/abiabstimmung/categorymanagement/viewcategory/:id', controller.viewallcategory);
+router.get('/abiabstimmung/categorymanagement/:id',controller.deletecategory);
   
 module.exports = router;
