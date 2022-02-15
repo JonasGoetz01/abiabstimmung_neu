@@ -1,49 +1,53 @@
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Lehrer verwalten</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Lehrer verwalten</li>
+    </ol>
 </nav>
 
 {{#if removedUser}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  Lehrer wurde entfernt.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Lehrer wurde entfernt.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {{/if}}
 
 <div class="row">
-  <div class="col-6">
-    <h1>Lehrer</h1>
-  </div>
-  <div class="col-6 d-flex justify-content-end">
-    <a href="/abiabstimmung/teachermanagement/addteacher" type="button" class="btn btn-primary align-self-center">+ Lehrer hinzufügen</a>
-  </div>
+    <div class="col-6">
+        <h1>Lehrer</h1>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a href="/abiabstimmung/teachermanagement/addteacher" type="button" class="btn btn-primary align-self-center">+
+            Lehrer hinzufügen</a>
+    </div>
 </div>
 
 <table class="table">
-  <thead class="thead-dark">
+    <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Vorname</th>
-      <th scope="col" class="text-end">Action</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Vorname</th>
+        <th scope="col" class="text-end">Action</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
 
     {{#each rows}}
-    <tr>
-      <th scope="row">{{this.ID}}</th>
-      <td>{{this.Name}}</td>
-      <td>{{this.Forename}}</td>
-      <td class="text-end">
-        <a href="/abiabstimmung/teachermanagement/viewteacher/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> View</a>
-        <a href="/abiabstimmung/teachermanagement/editteacher/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Edit</a>
-        <a href="/abiabstimmung/teachermanagement/{{this.ID}}" type="button" class="btn btn-light btn-small" style="color:red;"><i class="bi bi-person-x"></i> Delete</a>
-      </td>
-    </tr>
+        <tr>
+            <th scope="row">{{this.ID}}</th>
+            <td>{{this.Name}}</td>
+            <td>{{this.Forename}}</td>
+            <td class="text-end">
+                <a href="/abiabstimmung/teachermanagement/viewteacher/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-eye"></i> View</a>
+                <a href="/abiabstimmung/teachermanagement/editteacher/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Edit</a>
+                <a href="/abiabstimmung/teachermanagement/{{this.ID}}" type="button" class="btn btn-light btn-small"
+                   style="color:red;"><i class="bi bi-person-x"></i> Delete</a>
+            </td>
+        </tr>
     {{/each}}
 
-  </tbody>
+    </tbody>
 </table>

@@ -13,12 +13,12 @@ spec:
         app: wichteln
     spec:
       containers:
-      - image: jonasgoetz01/website:V1.0
-        name: wichteln-container
-        command: ["/bin/sh"]
-        args:
-          - -c
-          - >-
+        - image: jonasgoetz01/website:V1.0
+          name: wichteln-container
+          command: [ "/bin/sh" ]
+          args:
+            - -c
+            - >-
               apt update &&
               cd workspace && 
               git clone https://github.com/JonasGoetz01/wichteln.git wichteln && 

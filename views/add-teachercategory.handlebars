@@ -1,7 +1,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/abiabstimmung/teachercategorymanagement/">Lehrer Kategorien verwalten</a></li>
+        <li class="breadcrumb-item"><a href="/abiabstimmung/teachercategorymanagement/">Lehrer Kategorien verwalten</a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Neue Lehrer Kategorie</li>
     </ol>
 </nav>
@@ -13,6 +14,7 @@
     </div>
 {{/if}}
 
-<form class="row g-3 needs-validation" method="POST" action="/abiabstimmung/teachercategorymanagement/addteachercategory" novalidate>
+<form class="row g-3 needs-validation" method="POST"
+      action="/abiabstimmung/teachercategorymanagement/addteachercategory" novalidate>
     {{> category-form}}
 </form>

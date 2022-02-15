@@ -1,47 +1,51 @@
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Standard Kategorien verwalten</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Standard Kategorien verwalten</li>
+    </ol>
 </nav>
 
 {{#if removedUser}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  Standard Kategorie wurde entfernt.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Standard Kategorie wurde entfernt.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {{/if}}
 
 <div class="row">
-  <div class="col-6">
-    <h1>Standard Kategorien</h1>
-  </div>
-  <div class="col-6 d-flex justify-content-end">
-    <a href="/abiabstimmung/standardmanagement/addstandard" type="button" class="btn btn-primary align-self-center">+ Standard Kategorie hinzufügen</a>
-  </div>
+    <div class="col-6">
+        <h1>Standard Kategorien</h1>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a href="/abiabstimmung/standardmanagement/addstandard" type="button" class="btn btn-primary align-self-center">+
+            Standard Kategorie hinzufügen</a>
+    </div>
 </div>
 
 <table class="table">
-  <thead class="thead-dark">
+    <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col" class="text-end">Action</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col" class="text-end">Action</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
 
     {{#each rows}}
-    <tr>
-      <th scope="row">{{this.ID}}</th>
-      <td>{{this.name}}</td>
-      <td class="text-end">
-        <a href="/abiabstimmung/standardmanagement/viewstandard/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> Anschauen</a>
-        <a href="/abiabstimmung/standardmanagement/editstandard/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Bearbeiten</a>
-        <a href="/abiabstimmung/standardmanagement/{{this.ID}}" type="button" class="btn btn-light btn-small" style="color:red;"><i class="bi bi-person-x"></i> Löschen</a>
-      </td>
-    </tr>
+        <tr>
+            <th scope="row">{{this.ID}}</th>
+            <td>{{this.name}}</td>
+            <td class="text-end">
+                <a href="/abiabstimmung/standardmanagement/viewstandard/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-eye"></i> Anschauen</a>
+                <a href="/abiabstimmung/standardmanagement/editstandard/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Bearbeiten</a>
+                <a href="/abiabstimmung/standardmanagement/{{this.ID}}" type="button" class="btn btn-light btn-small"
+                   style="color:red;"><i class="bi bi-person-x"></i> Löschen</a>
+            </td>
+        </tr>
     {{/each}}
 
-  </tbody>
+    </tbody>
 </table>

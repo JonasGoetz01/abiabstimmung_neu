@@ -1,49 +1,53 @@
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Versus Fragen verwalten</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/abiabstimmung/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Versus Fragen verwalten</li>
+    </ol>
 </nav>
 
 {{#if removedUser}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  User has been removed.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        User has been removed.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {{/if}}
 
 <div class="row">
-  <div class="col-6">
-    <h1>Versus Fragen</h1>
-  </div>
-  <div class="col-6 d-flex justify-content-end">
-    <a href="/abiabstimmung/vsmanagement/addvs" type="button" class="btn btn-primary align-self-center">+ Frage hinzufügen</a>
-  </div>
+    <div class="col-6">
+        <h1>Versus Fragen</h1>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a href="/abiabstimmung/vsmanagement/addvs" type="button" class="btn btn-primary align-self-center">+ Frage
+            hinzufügen</a>
+    </div>
 </div>
 
 <table class="table">
-  <thead class="thead-dark">
+    <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Option1</th>
-      <th scope="col">Option2</th>
-      <th scope="col" class="text-end">Action</th>
+        <th scope="col">#</th>
+        <th scope="col">Option1</th>
+        <th scope="col">Option2</th>
+        <th scope="col" class="text-end">Action</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
 
     {{#each rows}}
-    <tr>
-      <th scope="row">{{this.ID}}</th>
-      <td>{{this.option1}}</td>
-      <td>{{this.option2}}</td>
-      <td class="text-end">
-        <a href="/abiabstimmung/vsmanagement/viewvs/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> Anschauen</a>
-        <a href="/abiabstimmung/vsmanagement/editvs/{{this.ID}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Bearbeiten</a>
-        <a href="/abiabstimmung/vsmanagement/{{this.ID}}" type="button" class="btn btn-light btn-small" style="color:red;"><i class="bi bi-person-x"></i> Löschen</a>
-      </td>
-    </tr>
+        <tr>
+            <th scope="row">{{this.ID}}</th>
+            <td>{{this.option1}}</td>
+            <td>{{this.option2}}</td>
+            <td class="text-end">
+                <a href="/abiabstimmung/vsmanagement/viewvs/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-eye"></i> Anschauen</a>
+                <a href="/abiabstimmung/vsmanagement/editvs/{{this.ID}}" type="button"
+                   class="btn btn-light btn-small"><i class="bi bi-pencil"></i> Bearbeiten</a>
+                <a href="/abiabstimmung/vsmanagement/{{this.ID}}" type="button" class="btn btn-light btn-small"
+                   style="color:red;"><i class="bi bi-person-x"></i> Löschen</a>
+            </td>
+        </tr>
     {{/each}}
 
-  </tbody>
+    </tbody>
 </table>
