@@ -15,6 +15,14 @@ router.post('/abiabstimmung/studentmanagement/editstudent/:id', controller.updat
 router.get('/abiabstimmung/studentmanagement/viewstudent/:id', controller.viewallstudents);
 router.get('/abiabstimmung/studentmanagement/:id',controller.deletestudent);
 
+router.get('/abiabstimmung/teachermanagement/', controller.viewteacher);
+router.get('/abiabstimmung/teachermanagement/addteacher', controller.formteacher);
+router.post('/abiabstimmung/teachermanagement/addteacher', controller.createteacher);
+router.get('/abiabstimmung/teachermanagement/editteacher/:id', controller.editteacher);
+router.post('/abiabstimmung/teachermanagement/editteacher/:id', controller.updateteacher);
+router.get('/abiabstimmung/teachermanagement/viewteacher/:id', controller.viewallteacher);
+router.get('/abiabstimmung/teachermanagement/:id',controller.deleteteacher);
+
 router.get('/abiabstimmung/vsmanagement/', controller.viewvs);
 router.get('/abiabstimmung/vsmanagement/addvs', controller.formvs);
 router.post('/abiabstimmung/vsmanagement/addvs', controller.createvs);
