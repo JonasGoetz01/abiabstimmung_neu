@@ -20,7 +20,6 @@ let connection = mysql.createConnection({
 exports.home = (req, res) => {
   connection.query('SELECT * FROM student', (err, student) => {
     if (!err) {
-      console.log(student)
       res.render('home', { student })
     }else{
       console.log(err);
@@ -165,10 +164,146 @@ exports.formvs = (req, res) => {
 
 
 exports.createvs = (req, res) => {
-  const { name, option1, option2 } = req.body;
-  connection.query('INSERT INTO vs SET Name = ?, Option1 = ?, Option2 = ?', [name, option1, option2], (err, rows) => {
+  const { option1, option2 } = req.body;
+  connection.query('INSERT INTO vs SET Option1 = ?, Option2 = ?', [option1, option2], (err, rows) => {
     if (!err) {
-      res.render('add-student', { alert: 'Versus Frage erfolgreich angelegt.' });
+      res.render('add-vs', { alert: 'Versus Frage erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+exports.editvs = (req, res) => {
+  connection.query('SELECT * FROM vs WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('edit-vs', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.updatevs = (req, res) => {
+  const { option1, option2 } = req.body;
+  const voted = req.body.voted ? 1 : 0;
+  connection.query('UPDATE vs SET Option1 = ?, Option2 = ? WHERE ID = ?', [option1, option2, req.params.id], (err, rows) => {
+    if (!err) {
+      connection.query('SELECT * FROM vs WHERE ID = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('edit-vs', { rows, alert: `Frage wurde aktualisiert.` });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.deletevs = (req, res) => {
+  connection.query('DELETE from vs WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      let removedstudent = encodeURIComponent('Frage erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/vsmanagement');
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.viewallvs = (req, res) => {
+  connection.query('SELECT * FROM vs WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-vs', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+//---------------------------------------------Category-------------------------------------------------------------
+
+
+exports.viewcategory = (req, res) => {
+  connection.query('SELECT * FROM category', (err, rows) => {
+    if (!err) {
+      let removedStudent = req.query.removed;
+      res.render('categorymanagement', { rows, removedStudent });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.formcategory = (req, res) => {
+  res.render('add-category');
+}
+
+
+exports.createcategory = (req, res) => {
+  const { name } = req.body;
+  connection.query('INSERT INTO category SET name = ?', [name], (err, rows) => {
+    if (!err) {
+      res.render('add-category', { alert: 'Kategorie erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+exports.editcategory = (req, res) => {
+  connection.query('SELECT * FROM category WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('edit-category', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.updatecategory = (req, res) => {
+  const { name } = req.body;
+  const voted = req.body.voted ? 1 : 0;
+  connection.query('UPDATE category SET name = ? WHERE ID = ?', [name, req.params.id], (err, rows) => {
+    if (!err) {
+      connection.query('SELECT * FROM category WHERE ID = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('edit-category', { rows, alert: `Kategorie wurde aktualisiert.` });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.deletecategory = (req, res) => {
+  connection.query('DELETE from category WHERE ID = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      let removedstudent = encodeURIComponent('Kategorie erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/categorymanagement');
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.viewallcategory = (req, res) => {
+  connection.query('SELECT * FROM category WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-category', { rows });
     } else {
       console.log(err);
     }
