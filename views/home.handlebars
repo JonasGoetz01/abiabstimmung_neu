@@ -1,23 +1,57 @@
-<h1>Abstimmung</h1>
-<br>
-<table class="table" style="margin-top: 5px;">
-  <thead class="thead-dark">
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Vorname</th>
-        <th scope="col">Abgestimmt</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each student}}
-    <tr>
-      <td scope="row">{{this.ID}}</td>
-      <td>{{this.Name}}</td>
-      <td>{{this.Forename}}</td>
-      <td>{{this.voted}}</td>
-    </tr>
-    {{/each}}
-
-  </tbody>
-</table>
+<h1 style="text-align: center;">Abstimmung</h1>
+<br/>
+<a style="text-align: center;">Hier kannst Du Deine Meinung zur diesjährgen Abiabstimmung abgeben.</a><br>
+<a>Pass aber auf! Du kannst diese Abstimmung nur ein einziges Mal durchführen.</a><br>
+<a>Achte also genau darauf, was Du ausfüllst bevor Du auf den Absenden-Button ganz unten drückst.</a><br>
+<a>Viel Spaß:</a>
+<br/>
+<br/>
+<h2>Kategorien</h2>
+{{#each category}}
+  <h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+  <select class="form-select bg-dark text-light" aria-label="Default select example">
+  <option selected>Wähle einen Schüler</option>
+  {{#each ../students}}
+    <option name="category:{{this.ID}}">{{this.Name}}, {{this.Forename}}</option>
+  {{/each}}
+</select>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Versus Fragen</h2>
+{{#each vs}}
+  <h3 style="text-align: center; margin-top: 20px;">{{this.option1}} vs. {{this.option2}}</h3>
+  <select class="form-select bg-dark text-light" aria-label="Default select example">
+  <option selected>Wähle eine Option</option>
+    <option name="vs:{{this.ID}},1">{{this.option1}}</option>
+    <option name="vs:{{this.ID}},2"</option>
+</select>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Standard Abiturient</h2>
+{{#each standard}}
+  <h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+  <div class="form-outline">
+    <input type="number" id="typeNumber" class="form-control" name="standard:{{this.ID}}"/>
+  </div>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Lehrer Kategorien</h2>
+{{#each teachercategory}}
+  <h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+  <select class="form-select bg-dark text-light" aria-label="Default select example">
+  <option selected>Wähle einen Lehrer</option>
+  {{#each ../teacher}}
+    <option name="teachercategory:{{this.ID}}">{{this.Name}}, {{this.Forename}}</option>
+  {{/each}}
+</select>
+{{/each}}
+<hr/>
