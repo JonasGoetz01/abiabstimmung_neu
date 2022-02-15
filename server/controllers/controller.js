@@ -143,6 +143,91 @@ exports.viewallstudents = (req, res) => {
   });
 }
 
+
+/* ----------------------------------------------------teacher-section---------------------------------------------------------------------- */
+
+
+exports.viewteacher = (req, res) => {
+  connection.query('SELECT * FROM teacher', (err, rows) => {
+    if (!err) {
+      let removedStudent = req.query.removed;
+      res.render('teachermanagement', { rows, removedStudent });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.formteacher = (req, res) => {
+  res.render('add-teacher');
+}
+
+
+exports.createteacher = (req, res) => {
+  const { name, forename } = req.body;
+  connection.query('INSERT INTO teacher SET name = ?, forename = ?', [name, forename], (err, rows) => {
+    if (!err) {
+      res.render('add-teacher', { alert: 'Lehrer erfolgreich angelegt.' });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.editteacher = (req, res) => {
+  connection.query('SELECT * FROM teacher WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('edit-teacher', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.updateteacher = (req, res) => {
+  const { name, forename } = req.body;
+  const voted = req.body.voted ? 1 : 0;
+  connection.query('UPDATE teacher SET Name = ?, Forename = ? WHERE id = ?', [name, forename, req.params.id], (err, rows) => {
+    if (!err) {
+      connection.query('SELECT * FROM teacher WHERE id = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('edit-teacher', { rows, alert: `${name} ${forename} wurde aktualisiert.` });
+        } else {
+          console.log(err);
+        }
+      });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.deleteteacher = (req, res) => {
+  connection.query('DELETE from teacher WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      let removedstudent = encodeURIComponent('Lehrer erfolgreich gelöscht.');
+      res.redirect('/abiabstimmung/teachermanagement');
+    } else {
+      console.log(err);
+    }
+  });
+}
+
+
+exports.viewallteacher = (req, res) => {
+  connection.query('SELECT * FROM teacher WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-teacher', { rows });
+    } else {
+      console.log(err);
+    }
+  });
+}
+
 //---------------------------------------------Versus-------------------------------------------------------------
 
 
