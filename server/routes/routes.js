@@ -53,6 +53,6 @@ router.post('/abiabstimmung/teachercategorymanagement/editteachercategory/:id', 
 router.get('/abiabstimmung/teachercategorymanagement/viewteachercategory/:id', controller.viewallteachercategory);
 router.get('/abiabstimmung/teachercategorymanagement/:id', controller.deleteteachercategory);
 
-router.get('/abiabstimmung/evaluation/', controller.evaluation);
+router.get('/abiabstimmung/teacherevaluation/', controller.teacherevaluation);
 
 module.exports = router;
