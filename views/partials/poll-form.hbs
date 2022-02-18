@@ -1,0 +1,52 @@
+<h2>Kategorien</h2>
+{{#each category}}
+	<h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+	<select class="form-select bg-dark text-light" aria-label="Default select example" name="category{{this.ID}}">
+		<option selected>Wähle einen Schüler</option>
+		{{#each ../students}}
+			<option>{{this.Name}}, {{this.Forename}}</option>
+		{{/each}}
+	</select>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Versus Fragen</h2>
+{{#each vs}}
+	<h3 style="text-align: center; margin-top: 20px;">{{this.option1}} vs. {{this.option2}}</h3>
+	<select class="form-select bg-dark text-light" aria-label="Default select example" name="versus{{this.ID}}">
+		<option selected>Wähle eine Option</option>
+		<option name="vs:{{this.ID}},1">{{this.option1}}</option>
+		<option name="vs:{{this.ID}},2">{{this.option2}}</option>
+	</select>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Standard Abiturient</h2>
+{{#each standard}}
+	<h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+	<div class="form-outline">
+		<input type="number" id="typeNumber" class="form-control" name="standard{{this.ID}}"/>
+	</div>
+{{/each}}
+<br/>
+<hr/>
+<br/>
+<br/>
+<h2>Lehrer Kategorien</h2>
+{{#each teachercategory}}
+	<h3 style="text-align: center; margin-top: 20px;">{{this.name}}</h3>
+	<select class="form-select bg-dark text-light" aria-label="Default select example" name="teachercategory{{this.ID}}">
+		<option selected>Wähle einen Lehrer</option>
+		{{#each ../teacher}}
+			<option>{{this.Name}}, {{this.Forename}}</option>
+		{{/each}}
+	</select>
+{{/each}}
+<hr/>
+<div class="col-12 d-grid">
+	<button class="btn btn-primary" type="submit">Bestätigen</button>
+</div>

@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/controller');
 
 router.get('/abiabstimmung/', controller.home);
+router.post('/abiabstimmung/', controller.sendpoll);
 
 router.get('/abiabstimmung/studentmanagement/', controller.viewstudent);
 router.post('/abiabstimmung/studentmanagement/', controller.finduser);
