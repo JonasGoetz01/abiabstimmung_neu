@@ -612,7 +612,7 @@ exports.teacherevaluation = (req, res) => {
 			for (let i = 0; i < teacher_categories.length; i++) {
 				console.log(teacher_categories[i].name)
 				getTeacherCategoryResults(teacher_categories[i].ID, teacher_categories[i].name, function (teacher_categories_results) {
-
+					
 				})
 				//res.render('teacherevaluation', {endData});
 			}
@@ -620,5 +620,23 @@ exports.teacherevaluation = (req, res) => {
 			console.log(err);
 		}
 	});
+}
+
+exports.sendpoll = (req, res) => {
+	connection.query('SELECT * FROM `category`', (err, categories) => {
+		if(err) console.log(err);
+		for (let i = 0; i < categories.length; i++){
+			let name = req.body.category3
+			name = name.split(',')[0]
+			let forename = req.body.category3
+			forename = forename.split(',')[1].substring(1)
+			let id = Object.getOwnPropertyNames(req.body)[i].match(/\d+/)[0]
+			connection.query('INSERT INTO `student-category`(`studentID`, `optionID`, `optionName`) VALUES ((SELECT ID FROM `student` WHERE Name = ? AND Forename = ?), (SELECT ID FROM `category` WHERE ID = ?),(SELECT name FROM `category` WHERE ID = ?))', [name, forename, id, id], (err, categories) => {
+				if(err) console.log(err);
+
+			});
+		}
+	});
+	//console.log(req.body)
 }
 
